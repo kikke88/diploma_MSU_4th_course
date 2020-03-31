@@ -19,33 +19,82 @@
 \geometry{bottom = 2cm}
 
 \usepackage{setspace} %set space between lines
-\usepackage{indentfirst} %indent first paragraph after section header
+\usepackage{indentfirst} %indent first pagearagraph after section header
 \usepackage{fancyhdr} %headers and footer
 \usepackage{nopageno} %hiding page numbers where needed
 \usepackage{tocloft} %control table of contents, figures
 
 \usepackage{graphicx}
 
+\usepackage{hhline}
+
+\usepackage{caption}
+\usepackage{subcaption}
+
 \linespread{1.3} %1.5 spacing
+
+\usepackage{enumerate}
+\usepackage{multirow}
+
+
+\textheight=24cm
+\textwidth=16cm
+
+% \oddsidemargin=5mm
+% \evensidemargin=-5mm
+% \marginparwidth=36pt
+% \topmargin=-1cm
+% \footnotesep=3ex
+% %\flushbottom
+% \raggedbottom
+% \tolerance 3000
+
+\parindent 1.27cm % Абзацный отступ
+
+\sloppy             % Избавляемся от переполнений
+\global\hyphenpenalty = 1000 % Частота переносов
+\clubpenalty = 10000  % Запрещаем разрыв страницы после первой строки абзаца
+\widowpenalty = 10000 % Запрещаем разрыв страницы после последней строки абзаца
+
+% Библиография: отступы и межстрочный интервал
+% \makeatletter
+% \renewenvironment{thebibliography}[1]
+%     {\section*{\refname}
+%         \list{\@biblabel{\@arabic\c@enumiv}}
+%            {\settowidth\labelwidth{\@biblabel{#1}}
+%             \leftmargin\labelsep
+%             \itemindent 16.7mm
+%             \@openbib@code
+%             \usecounter{enumiv}
+%             \let\p@enumiv\@empty
+%             \renewcommand\theenumiv{\@arabic\c@enumiv}
+%         }
+%         \setlength{\itemsep}{0pt}
+%     }
+% \makeatother
+
 
 
 %Разработка метода прогнозирования слабой масштабируемости суперкомпьютерных приложений
 
 
-%разобраться с правильным оформлением ссылок	
+%разобраться с правильным оформлением ссылок
+
 \begin{document}
 
 	%титульный лист
+	%\input{input/TITLE}
 
-	%\tableofcontents
-	%\clearpage
+	\tableofcontents
+	\clearpage
 
-	%\input{input/0_introduction}
+
+	\input{input/0_introduction}
 	\input{input/1_problem_statement}
 	\input{input/2_overview_of_existing_methods_and_approaches}
-	%\input{input/3_description_of_the_developed_method}
-	%\input{input/4_exerimental_verification_of_the_method's_applicability_on_a_supercomputer}
-	%\input{input/5_conclusion}
+	\input{input/3_description_of_the_developed_method}
+	\input{input/4_exerimental_verification_of_the_method's_applicability_on_a_supercomputer}
+	\input{input/5_conclusion}
 	\input{input/6_list_of_references}
 
 \end{document}
