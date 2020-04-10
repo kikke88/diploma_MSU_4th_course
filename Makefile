@@ -1,11 +1,13 @@
-all: main.pdf
+all: view
 
-view:
+view: build
 	if which xdg-open > /dev/null; \
 	then xdg-open main.pdf; \
  	else open main.pdf; \
 	fi 
 
+build: main.pdf
+	
 main.pdf: ./main.tex ./input/* ./images/*
 	pdflatex $<
 	
