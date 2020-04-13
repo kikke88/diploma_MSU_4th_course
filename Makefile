@@ -7,9 +7,9 @@ view: build
 	fi 
 
 build: main.pdf
-	
+
 main.pdf: ./main.tex ./input/* ./images/*
-	pdflatex $<
+	latexmk -pdf $<
 	
 		
 clean:
@@ -19,4 +19,6 @@ clean:
 	       *.log \
 	       *.out \
 	       *.synctex.gz \
-	       *.toc
+	       *.toc \
+	       *.nav \
+	       *.snm

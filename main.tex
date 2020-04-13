@@ -1,4 +1,6 @@
-\documentclass[oneside, final, 12pt]{extreport}
+%\documentclass[oneside, final, 12pt]{extreport}
+\documentclass[12pt,fleqn]{article}
+
 \usepackage{amsmath, amsthm, amssymb} %math expressions, theoreme/lemma, math symbols
 \usepackage{mathtext} %russian letters in formulas
 
@@ -8,20 +10,17 @@
 \usepackage[T1, T2A]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english, russian]{babel}
-%\usepackage{pscyr}    шрифты, мб не нужны, но они в любом случае пока не работают
-
 
 % formatting
-\usepackage{geometry} %customize page layout
-\geometry{left = 3cm}
-\geometry{right = 1cm}
-\geometry{top = 1.5cm}
-\geometry{bottom = 2cm}
+% \usepackage{geometry} %customize page layout
+% \geometry{left = 3cm}
+% \geometry{right = 1cm}
+% \geometry{top = 1.5cm}
+% \geometry{bottom = 2cm}
 
 \usepackage{setspace} %set space between lines
 \usepackage{indentfirst} %indent first pagearagraph after section header
-\usepackage{fancyhdr} %headers and footer
-\usepackage{nopageno} %hiding page numbers where needed
+
 \usepackage{tocloft} %control table of contents, figures
 
 \usepackage{graphicx}
@@ -29,72 +28,58 @@
 \usepackage{hhline}
 
 \usepackage{caption}
+
 \usepackage{subcaption}
 
-\linespread{1.3} %1.5 spacing
+\usepackage[shortlabels]{enumitem}
+\setlist{nolistsep, itemsep=0.1cm, parsep=0pt, leftmargin=1.5cm}
 
-\usepackage{enumerate}
 \usepackage{multirow}
 
+\usepackage{algorithm}
+\usepackage{algpseudocode}
 
-\textheight=24cm
+\textheight=23cm
 \textwidth=16cm
+\oddsidemargin=5mm % левое поле для нечётных страниц
+\evensidemargin=-5mm % севое поле для чётных страниц
+%\marginparwidth=36pt
+\topmargin=-1cm % расстояние от верхней границы листа до заголовка
+%\flushbottom % выстота тела всех страниц одинаковая 
+\raggedbottom % позволяет несколько различаться высоте тел различных страниц
+\tolerance 3000 % how much badness is allowable without error. 
 
-% \oddsidemargin=5mm
-% \evensidemargin=-5mm
-% \marginparwidth=36pt
-% \topmargin=-1cm
-% \footnotesep=3ex
-% %\flushbottom
-% \raggedbottom
-% \tolerance 3000
+%\renewcommand{\baselinestretch}{1.1} % расстояние между строками абзаца
+%\renewcommand{\baselinestretch}{1.5}
+\linespread{1.3} %1.5 spacing 
+%?????????????????
 
 \parindent 1.27cm % Абзацный отступ
 
-\sloppy             % Избавляемся от переполнений
-\global\hyphenpenalty = 1000 % Частота переносов
+
+\sloppy             % текст редко залезает на правое поле
 \clubpenalty = 10000  % Запрещаем разрыв страницы после первой строки абзаца
-\widowpenalty = 10000 % Запрещаем разрыв страницы после последней строки абзаца
-
-% Библиография: отступы и межстрочный интервал
-% \makeatletter
-% \renewenvironment{thebibliography}[1]
-%     {\section*{\refname}
-%         \list{\@biblabel{\@arabic\c@enumiv}}
-%            {\settowidth\labelwidth{\@biblabel{#1}}
-%             \leftmargin\labelsep
-%             \itemindent 16.7mm
-%             \@openbib@code
-%             \usecounter{enumiv}
-%             \let\p@enumiv\@empty
-%             \renewcommand\theenumiv{\@arabic\c@enumiv}
-%         }
-%         \setlength{\itemsep}{0pt}
-%     }
-% \makeatother
-
+\widowpenalty = 10000 % Запрещаем разрыв страницы после предпоследней строки абзаца
+% \global\hyphenpenalty = 1000 % Частота переносов
 
 
 %Разработка метода прогнозирования слабой масштабируемости суперкомпьютерных приложений
 
-
-%разобраться с правильным оформлением ссылок
-
 \begin{document}
 
-	%титульный лист
-	%\input{input/TITLE}
+	\input{input/0_titlepage}
 
 	\tableofcontents
+	\thispagestyle{empty}
 	\clearpage
+	\setcounter{page}{3}
 
-
-	\input{input/0_introduction}
-	\input{input/1_problem_statement}
-	\input{input/2_overview_of_existing_methods_and_approaches}
-	\input{input/3_description_of_the_developed_method}
-	\input{input/4_exerimental_verification_of_the_method's_applicability_on_a_supercomputer}
-	\input{input/5_conclusion}
-	\input{input/6_list_of_references}
+	\input{input/1_introduction}
+	\input{input/2_problem_statement}
+	\input{input/3_overview_of_existing_methods_and_approaches}
+	\input{input/4_description_of_the_developed_method}
+	\input{input/5_exerimental_verification_of_the_method's_applicability_on_a_supercomputer}
+	\input{input/6_conclusion}
+	\input{input/7_list_of_references}
 
 \end{document}
