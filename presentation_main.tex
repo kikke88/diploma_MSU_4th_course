@@ -42,7 +42,7 @@
 % latex yourfile.tex
 % dvips yourfile.dvi
 % ps2pdf yourfile.ps
-\documentclass[unicode, t]{beamer}% [t], [c], или [b] --- вертикальное выравнивание на слайдах (верх, центр, низ)
+\documentclass[unicode, t, 11pt]{beamer}% [t], [c], или [b] --- вертикальное выравнивание на слайдах (верх, центр, низ)
 %\documentclass[aspectratio=169]{beamer} % Соотношение сторон
 
 %\usetheme{Berkeley} % Тема оформления
@@ -106,10 +106,25 @@
 \usepackage{enumitem}
 \usepackage{enumerate}
 
+\usepackage{caption}
+\DeclareCaptionFont{tiny}{\tiny}
+\captionsetup{belowskip=0pt}
+\setlength{\belowcaptionskip}{-10pt}
+
+
+\newlength{\mylen}
+
+
+\setlist[itemize]{noitemsep, topsep=0pt}
+
+
+\usepackage{tabularx}
+
+%\addtobeamertemplate{frametitle}{}{\vspace*{-0.cm}}
 %\definecolor{applegreen}{rgb}{0.55, 0.71, 0.0}
 
 \setbeamertemplate{footline}[frame number]
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{
 	{\footnotesize\color{black}Московский государственный университет имени М.В.Ломоносова\\
     Факультет Вычислительной Математики и Кибернетики\\
@@ -135,7 +150,7 @@
 
 	\section{Введение}
 		\begin{frame}
-		AAAA
+		!Дописать!
 		\end{frame}
 
 	\section{Постановка задачи}
@@ -202,6 +217,11 @@
 			\begin{frame}
 				\frametitle{\insertsection}
 					\framesubtitle{\insertsubsection}
+% ... является использование линейной регрессии.
+% Требование универсальности и отсутствия информации о коде, алгоритме
+% Использование исключительно эмпирических данных
+% Данные – динамические характеристики, полученные для нескольких
+% конкретных запусков приложения
 					С помощью линейной регрессии строятся предсказания значений динамических характеристик на \(\dot{p}\) процессах, использую эмпирические данные, полученные из нескольких запусков на \(\mathbb{Q} = \{q_1,\ldots, q_n\},\ q_1 < q_2 < \ldots < q_n < \dot{p}\) процессах.
 
 					Предиктор - функция от параметров запуска и количества используемых процессов: \(\label{main_formula}DF = \hat{DF} + error = F(x_1, x_2, \ldots, x_n, p) + error\)
@@ -283,8 +303,143 @@
 		\end{frame}
 
 	\section{Экспериментальная проверка применимости метода}
+	% СКАЗАТЬ ПРО ТО ЧТО ТАКОЕ PS
+		\begin{frame}
+			\frametitle{\insertsection}
+			Применимость метода оценивалась с помощью запусков приложений на суперкомпьютере "<Ломоносов-2">. Вычислительные узлы которого включают процессор Intel Haswell-EP E5-2697v3 (2.6 GHz), оборудованы 64 GB памяти и связаны коммуникационной сетью InfiniBand FDR.
+
+			В качестве приложений для тестирования использовались реализации HPL, HPCG, алгоритмов DNS и SUMMA матричного умножения, Graph500.
+			%Так как рассматривается слабая масштабируемость, то тестирования проводились с конфигурациями запуска, удовлетворяющими выражению из определения слабой масштабируемости.
+			Для того чтобы более полно проверить применимость метода на реальных суперкомпьютерных приложениях и оценить их возможности к слабой масштабируемости, для некоторых из приложений тестирования проводились для нескольких значений констант из определения слабой масштабируемости \(T_A(N)\:/\:p = const\) (HPL - 3 различных константы; Graph500, DNS - 2 различных константы; HPCG, SUMMA - 1 константа).
+
+
+			% !старый варинат! Для того чтобы более полно проверить применимость метода на реальных суперкомпьютерных приложениях и оценить их возможности к слабой масштабируемости, для некоторых из приложений тестирования проводились для нескольких значений констант используемых в этом выражении (HPL - 3 различных константы; Graph500, DNS - 2 различных константы; HPCG, SUMMA - 1 константа).
+		\end{frame}
+
+		\begin{frame}
+			\frametitle{\insertsection}
+			\framesubtitle{Конфигурации запусков}
+			Выбор тестовых конфигураций производился согласно описанному ранее алгоритму: \(p_{max}\) принимается равным 210 процессам (максимальное доступное количество в очереди test). Отрезок \([1, \ldots, 210]\) разбивается с постоянным шагом, затем, для каждого конкретного количества процессов по выбранной константе и специфичной для каждого приложения сложности его работы устанавливаются параметры запуска отвечающие за размер задачи.
+
+			Целевые же конфигурации выбирались с учётом особенностей реализации приложений и доступных для запусков узлов, так в среднем, если сравнивать количество используемых процессов, они превосходят самую большую тестовую конфигурацию в 1,2, 2,5, 3,3, 4,5, и 6,6 раз.
+
+		\end{frame}
 		\subsection{HPL}
+		\begin{frame}
+			\footnotesize
+			\frametitle{\insertsection}
+	 		\framesubtitle{\insertsubsection}
+	 		\begin{columns}[T]
+	 			\setlength{\mylen}{0.45\textwidth}
+	 			\begin{column}{\mylen}
+	 				\begin{itemize}[label = \(\bullet\)]
+				 		\item HPL — тест производительности вычислительной системы.
+				 		%, на основе результатов которого формируется современный список TOP500 лучших суперкомпьютеров в мире.
+				 		Суть теста заключается в решении плотных систем линейных алгебраических уравнений, используя LU факторизацию.
+				 		\item Сложность алгоритма \(\mathcal{O}(N^3)\)
+				 		\item Количество операций чтения/записи \(\mathcal{O}(N^2)\).
+				 	\end{itemize}
+				 	\begin{table}
+			 			\captionsetup{font=tiny, labelfont=tiny}
+			 			\tiny
+							\begin{tabularx}{\textwidth}{|X|X|X|X|X|}%{|l||p{0.35cm}|p{0.35cm}|p{0.35cm}|p{0.35cm}|}
+								\hline
+								     & Min  & Max   & Mean & Median \\ \hline
+								Time & 0,02 & 11,35 & 4,12 & 3,82   \\ \hline
+								Perf & 0,07 & 16,35 & 5,23 & 5,69   \\ \hline
+							\end{tabularx}
+						\caption{Относительные ошибки предсказаний, усреднённые по динамическим характеристикам, HPL}
+					\end{table}
+				 			
+	 			\end{column}
+	 			\begin{column}{\dimexpr\textwidth-\mylen}
+		 			\begin{figure}
+						\captionsetup{font=tiny, labelfont=tiny}
+						\includegraphics[width=0.79\textwidth]{./images/aa}%{./images/fig_hpl_k3}
+						\caption{Аппроксимирующая функция для слабой масштабируемости HPL}
+						\label{figure_HPL_C_3}
+					\end{figure}
+		 			\begin{table}
+			 			\captionsetup{font=tiny, labelfont=tiny}
+			 			\tiny
+							\begin{tabularx}{\textwidth}{|X|X|X|X|X|X|}%{|p{0.3cm}||p{0.3cm}|p{0.3cm}|p{0.3cm}|p{0.3cm}|p{0.3cm}|}
+								\hline
+								  PN &  225 &  400 &  576 &  784 & 1369 \\ \hline
+								Mean & 5,09 & 7,17 & 3,74 & 4,43 & 2,95 \\ \hline
+							\end{tabularx}
+						\caption{Относительные ошибки предсказаний, усреднённые по количеству процессов, HPL}
+					\end{table}
+				\end{column}
+	 		\end{columns}
+	 	\end{frame}
+	 	% \begin{frame}
+	 	% 	\small
+			% \frametitle{\insertsection}
+	 	% 	\framesubtitle{\insertsubsection}
+	 	% 	\begin{columns}
+	 	% 		\begin{column}{.5\textwidth}
+	 	% 			\begin{itemize}[label = \(\bullet\)]
+			% 	 		\item HPL — тест производительности вычислительной системы.
+			% 	 		%, на основе результатов которого формируется современный список TOP500 лучших суперкомпьютеров в мире.
+			% 	 		Суть теста заключается в решении плотных систем линейных алгебраических уравнений, используя LU факторизацию.
+			% 	 		\item Сложность алгоритма \(\mathcal{O}(N^3)\)
+			% 	 		\item Количество операций чтения/записи \(\mathcal{O}(N^2)\).
+			% 	 		\end{itemize}
+			% 	 			\begin{table}
+			% 	 			\captionsetup{font=tiny, labelfont=tiny}
+			% 	 				\tiny
+			% 					\begin{tabular}{|r||p{0.3cm}|p{0.3cm}|p{0.3cm}|p{0.3cm}|p{0.3cm}|}
+			% 						\hline
+			% 						  PN &  225 &  400 &  576 &  784 & 1369 \\ \hline
+			% 						mean & 5,09 & 7,17 & 3,74 & 4,43 & 2,95 \\ \hline
+			% 					\end{tabular}
+			% 				\caption{Относительные ошибки предсказаний, усреднённый по количеству процессов, HPL}
+			% 				\end{table}	
+	 	% 		\end{column}
+	 	% 		\begin{column}{.5\textwidth}
+					
+			% 		\begin{table}
+			% 			\captionsetup{font=tiny, labelfont=tiny}
+			% 			\tiny
+			% 			\begin{tabular}{|c|c|c|c|}
+			% 				\hline
+			% 				\multicolumn{4}{|c|}{\(C_1\)}     \\ \hline
+			% 				  PN &   PS & RE\_time & RE\_perf \\ \hline
+			% 				 225 & 60,8 &     7,58 & 6,82     \\ \hline
+			% 				 400 & 73,7 &     1,79 & 1,90     \\ \hline
+			% 				 576 & 83,2 &     0,37 & 0,45     \\ \hline
+			% 				 784 & 92,2 &     0,12 & 0,09     \\ \hline
+			% 				1369 &  111 &     0,16 & 0,07     \\ \hline
+			% 				\hline
+			% 				\multicolumn{4}{|c|}{\(C_2\)}      \\ \hline
+			% 				  PN &    PS & RE\_time & RE\_perf \\ \hline
+			% 				 225 & 76,65 &     3,82 & 0,82     \\ \hline
+			% 				 400 & 92,85 &     7,53 & 16,35    \\ \hline
+			% 				 576 & 104,8 &     0,62 & 9,25     \\ \hline
+			% 				 784 & 116,1 &     1,42 & 10,59    \\ \hline
+			% 				1369 &   140 &    11,35 & 4,41     \\ \hline
+			% 				\hline
+			% 				\multicolumn{4}{|c|}{\(C_3\)}      \\ \hline
+			% 				  PN &    PS & RE\_time & RE\_perf \\ \hline
+			% 				 225 & 100,8 &     5,79 & 5,69     \\ \hline
+			% 				 400 &   117 &     7,73 & 7,73     \\ \hline
+			% 				 576 &   132 &     6,06 & 5,72     \\ \hline
+			% 				 784 & 146,3 &     7,42 & 6,95     \\ \hline
+			% 				1369 & 176,2 &     0,02 & 1,69     \\ \hline
+			% 			\end{tabular}
+			% 			\caption{Целевые конфигурации запусков HPL для трёх различных значений констант и значения относительных ошибок предсказания времени и производительности на этих конфигурациях}
+			% 			% % Тестовые конфигурации запуска, используемые для вычислений параметров модели, и целевых конфигураций, необходимые для оценки погрешности предсказаний, приведены в таблицах \eqref{test_HPL} и \eqref{target_HPL} соответственно. Коэффициенты \(C_1, C_2, C_3\), определяющие значение отношения количества работы приходящееся на один процесс и количества используемых процессов, из выражения \eqref{weak_sc}, связаны соотношением: \(4 \cdot C_1 = 2 \cdot C_2 = C_3 \), то есть с увеличением на единицу номера коэффициента количество работы на один процесс увеличивается в два раза.
+						
+			% 			%\label{target_HPL}
+			% 		\end{table}
+					
+
+			% 	\end{column}
+	 	% 	\end{columns}
+	 		
+	 	% \end{frame}
 		\subsection{HPCG}
+		
 		\subsection{Алгоритмы матричного умножения}
 			\subsubsection{SUMMA}
 			\subsubsection{DNS}
@@ -295,6 +450,8 @@
 
 % \begin{frame}
 % 	\frametitle{\insertsection}
-% 		\framesubtitle{\insertsubsection}
+% 	\framesubtitle{\insertsubsection}
 
 % \end{frame}
+
+
