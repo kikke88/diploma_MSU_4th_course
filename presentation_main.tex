@@ -355,8 +355,8 @@
 	 			\begin{column}{\dimexpr\textwidth-\mylen}
 		 			\begin{figure}
 						\captionsetup{font=tiny, labelfont=tiny}
-						\includegraphics[width=0.79\textwidth]{./images/aa}%{./images/fig_hpl_k3}
-						\caption{Аппроксимирующая функция для слабой масштабируемости HPL}
+						\includegraphics[width=0.788\textwidth]{./images/aa}%{./images/fig_hpl_k3}
+						\caption{Аппроксимирующая функция предсказания времени для слабой масштабируемости HPL}
 						\label{figure_HPL_C_3}
 					\end{figure}
 		 			\begin{table}
@@ -439,19 +439,315 @@
 	 		
 	 	% \end{frame}
 		\subsection{HPCG}
+			\begin{frame}
+				\footnotesize
+				\frametitle{\insertsection}
+		 		\framesubtitle{\insertsubsection}
+		 		\begin{columns}[T]
+		 			\setlength{\mylen}{0.45\textwidth}
+		 			\begin{column}{\mylen}
+		 				\begin{itemize}[label = \(\bullet\)]
+					 		\item HPCG — альтернативный HPL тест производительности.
+					 		\item Сильно выделяется на фоне остальных приложений, так как сложность алгоритма и количество операций чтения/записи \(\mathcal{O}(N)\).
+					 	\end{itemize}
+					 	\begin{table}
+				 			\captionsetup{font=tiny, labelfont=tiny}
+				 			\tiny
+								\begin{tabularx}{\textwidth}{|X|X|X|}
+									\hline
+									PN   & RE\_time & RE\_perf \\ \hline
+									280	 & 0,02     & 0,37     \\ \hline
+									560	 & 1,56     & 0,80     \\ \hline
+									700	 & 1,89     & 13,07    \\ \hline
+									980	 & 2,85     & 19,54    \\ \hline
+									1400 & 7,05     & 8,99     \\ \hline
+								\end{tabularx}
+							\caption{Относительные ошибки предсказаний времени и производительности HPCG}
+						\end{table}
+					 			
+		 			\end{column}
+		 			\begin{column}{\dimexpr\textwidth-\mylen}
+			 			\begin{figure}
+							\captionsetup{font=tiny, labelfont=tiny}
+							\includegraphics[width=\textwidth]{./images/bbb1}%{./images/fig_hpl_k3}
+							\caption{Аппроксимирующая функция предсказания производительности для слабой масштабируемости HPCG}
+						\end{figure}
+					\end{column}
+		 		\end{columns}
+			\end{frame}
 		
-		\subsection{Алгоритмы матричного умножения}
-			\subsubsection{SUMMA}
-			\subsubsection{DNS}
+		\subsection{Алгоритмы матричного умножения, SUMMA}
+			% \begin{frame}
+			% 	\footnotesize
+			% 	\frametitle{\insertsection}
+		 % 		\framesubtitle{\insertsubsection}
+		 % 		\begin{columns}[T]
+		 % 			\setlength{\mylen}{0.45\textwidth}
+		 % 			\begin{column}{\mylen}
+		 % 				\begin{itemize}[label = \(\bullet\)]
+			% 		 		\item SUMMA — алгоритм матричного умножения.
+			% 		 		\item Используется в ScaLAPAK и PBLAS.
+			% 		 		\item Сложность алгоритма \(\mathcal{O}(N^3)\)
+			%  				\item Количество операций чтения/записи \(\mathcal{O}(N^2)\).
+			%  				\item \(T_A(N)\:/\:p = const\linebreak\Rightarrow p = N^3\:/\:const\)
+			% 		 	\end{itemize}	 			
+		 % 			\end{column}
+		 % 			\begin{column}{\dimexpr\textwidth-\mylen}
+			%  			\begin{figure}
+			% 				\captionsetup{font=tiny, labelfont=tiny}
+			% 				\includegraphics[width=\textwidth]{./images/conf_SUMMA_NEW}%{./images/fig_hpl_k3}
+			% 				\caption{Конфигурации запусков матричного умножения по алгоритму SUMMA}
+			% 			\end{figure}
+			% 		\end{column}
+		 % 		\end{columns}
+			% \end{frame}
+			% \begin{frame}
+			% 	\footnotesize
+			% 	\frametitle{\insertsection}
+		 % 		\framesubtitle{\insertsubsection}
+		 % 		\begin{columns}[T]
+		 % 			\setlength{\mylen}{0.45\textwidth}
+		 % 			\begin{column}{\mylen}
+		 % 			\begin{table}
+			%  			\captionsetup{font=tiny, labelfont=tiny}
+			%  			\tiny
+			% 				\begin{tabularx}{\textwidth}{|X|X|X|}
+			% 				\hline
+			% 				\multicolumn{3}{|c|}{\(C_1\)} \\ \hline
+			% 				PN   & PS   & RE\_time        \\ \hline
+			% 				225  & 25,6 & 1,95            \\ \hline
+			% 				400  & 30   & 3,94            \\ \hline
+			% 				576  & 33,6 & 3,01            \\ \hline
+			% 				784  & 37,8 & 7,59            \\ \hline
+			% 				1024 & 40   & 1,39            \\ \hline
+			% 				\end{tabularx}
+			% 			\caption{Относительные ошибки предсказаний времени, SUMMA}
+			% 		\end{table}
+		 				
+			% 		 % 	\begin{table}
+			% 	 	% 		\captionsetup{font=tiny, labelfont=tiny}
+			% 	 	% 		\tiny
+			% 			% 		\begin{tabularx}{\textwidth}{|X|X|X|}
+			% 			% 			\hline
+			% 			% 			PN   & RE\_time & RE\_perf \\ \hline
+			% 			% 			280	 & 0,02     & 0,37     \\ \hline
+			% 			% 			560	 & 1,56     & 0,80     \\ \hline
+			% 			% 			700	 & 1,89     & 13,07    \\ \hline
+			% 			% 			980	 & 2,85     & 19,54    \\ \hline
+			% 			% 			1400 & 7,05     & 8,99     \\ \hline
+			% 			% 		\end{tabularx}
+			% 			% 	\caption{Относительные ошибки предсказаний времени и производительности HPCG}
+			% 			% \end{table}	 			
+		 % 			\end{column}
+		 % 			\begin{column}{\dimexpr\textwidth-\mylen}
+			%  			\begin{figure}
+			%  				\captionsetup{font=tiny, labelfont=tiny}
+			% 				\centering
+			% 				\includegraphics[width=\textwidth]{./images/ccc}
+			% 				\caption{Аппроксимирующая функция для слабой масштабируемости матричного умножения по алгоритму SUMMA}
+			% 				\label{graph_SUMMA}
+			% 			\end{figure}
+			% 		\end{column}
+		 % 		\end{columns}
+			% \end{frame}
+			\begin{frame}
+				\footnotesize
+				\frametitle{\insertsection}
+		 		\framesubtitle{\insertsubsection}
+		 		\begin{columns}[T]
+		 			\setlength{\mylen}{0.5\textwidth}
+		 			\begin{column}{\mylen}
+		 				\begin{figure}
+							\captionsetup{font=tiny, labelfont=tiny}
+							\includegraphics[width=.83\textwidth]{./images/conf_SUMMA_NEW}%{./images/fig_hpl_k3}
+							\caption{Конфигурации запусков матричного умножения по алгоритму SUMMA}
+						\end{figure}
+						\begin{itemize}[label = \(\bullet\)]
+					 		\item SUMMA — алгоритм матричного умножения.
+					 		\item Используется в ScaLAPAK и PBLAS.
+					 		\item Сложность алгоритма \(\mathcal{O}(N^3)\)
+			 				\item \(\Rightarrow p = N^3\:/\:const\)
+					 	\end{itemize}
+					 % 	\begin{table}
+				 	% 		\captionsetup{font=tiny, labelfont=tiny}
+				 	% 		\tiny
+						% 		\begin{tabularx}{\textwidth}{|X|X|X|}
+						% 			\hline
+						% 			PN   & RE\_time & RE\_perf \\ \hline
+						% 			280	 & 0,02     & 0,37     \\ \hline
+						% 			560	 & 1,56     & 0,80     \\ \hline
+						% 			700	 & 1,89     & 13,07    \\ \hline
+						% 			980	 & 2,85     & 19,54    \\ \hline
+						% 			1400 & 7,05     & 8,99     \\ \hline
+						% 		\end{tabularx}
+						% 	\caption{Относительные ошибки предсказаний времени и производительности HPCG}
+						% \end{table}	 			
+		 			\end{column}
+		 			\begin{column}{\dimexpr\textwidth-\mylen}
+			 			\begin{figure}
+			 				\captionsetup{font=tiny, labelfont=tiny}
+							\centering
+							\includegraphics[width=0.9\textwidth]{./images/ccc}
+							\caption{Аппроксимирующая функция для слабой масштабируемости матричного умножения по алгоритму SUMMA}
+							\label{graph_SUMMA}
+						\end{figure}
+						\begin{table}
+			 			\captionsetup{font=tiny, labelfont=tiny}
+			 			\tiny
+							\begin{tabularx}{\textwidth}{|X|X|X|}
+							\hline
+							\multicolumn{3}{|c|}{\(C_1\)} \\ \hline
+							PN   & PS   & RE\_time        \\ \hline
+							225  & 25,6 & 1,95            \\ \hline
+							400  & 30   & 3,94            \\ \hline
+							576  & 33,6 & 3,01            \\ \hline
+							784  & 37,8 & 7,59            \\ \hline
+							1024 & 40   & 1,39            \\ \hline
+							\end{tabularx}
+						\caption{Относительные ошибки предсказаний времени, SUMMA}
+					\end{table}
+					\end{column}
+		 		\end{columns}
+			\end{frame}
+		\subsection{Алгоритмы матричного умножения, DNS}
+			% \begin{frame}
+			% 	\footnotesize
+			% 	\frametitle{\insertsection}
+		 % 		\framesubtitle{\insertsubsection}
+		 % 		\begin{columns}[T]
+		 % 			\setlength{\mylen}{0.5\textwidth}
+		 % 			\begin{column}{\mylen}
+		 % 				\begin{figure}
+			% 				\captionsetup{font=tiny, labelfont=tiny}
+			% 				%\includegraphics[width=.9\textwidth]{./images/graph_C_1_DNS}%{./images/fig_hpl_k3}
+			% 				\caption{AAA}
+			% 			\end{figure}
+			% 			\begin{itemize}[label = \(\bullet\)]
+			% 		 		\item DNS — алгоритм матричного умножения.
+			% 		 		\item Сложность алгоритма \(\mathcal{O}(N^3)\)
+			% 		 	\end{itemize}
+			% 		 % 	\begin{table}
+			% 	 	% 		\captionsetup{font=tiny, labelfont=tiny}
+			% 	 	% 		\tiny
+			% 			% 		\begin{tabularx}{\textwidth}{|X|X|X|}
+			% 			% 			\hline
+			% 			% 			PN   & RE\_time & RE\_perf \\ \hline
+			% 			% 			280	 & 0,02     & 0,37     \\ \hline
+			% 			% 			560	 & 1,56     & 0,80     \\ \hline
+			% 			% 			700	 & 1,89     & 13,07    \\ \hline
+			% 			% 			980	 & 2,85     & 19,54    \\ \hline
+			% 			% 			1400 & 7,05     & 8,99     \\ \hline
+			% 			% 		\end{tabularx}
+			% 			% 	\caption{Относительные ошибки предсказаний времени и производительности HPCG}
+			% 			% \end{table}	 			
+		 % 			\end{column}
+		 % 			\begin{column}{\dimexpr\textwidth-\mylen}
+			%  			\begin{figure}
+			%  				\captionsetup{font=tiny, labelfont=tiny}
+			% 				\centering
+			% 				\includegraphics[width=.9\textwidth]{./images/graph_C_2_DNS}
+			% 				\caption{Аппроксимирующая функция для слабой масштабируемости матричного умножения по алгоритму SUMMA}
+			% 				\label{graph_SUMMA}
+			% 			\end{figure}
+			% 			\begin{table}
+			% 	 			\captionsetup{font=tiny, labelfont=tiny}
+			% 	 			\tiny
+			% 					\begin{tabularx}{\textwidth}{|X||X|X||X|X|}
+			% 					\hline
+			% 			             & \multicolumn{2}{|c|}{\(C_1\)} & \multicolumn{2}{|c|}{\(C_2\)} \\ \hline
+			% 			        PN   & PS   & RE\_time & PS & RE\_time          \\ \hline
+			% 			        343  & 31,5 & 6,55     & 63 & 5,66              \\ \hline
+			% 			        512  & 36   & 8,42     & 72 & 6,84              \\ \hline
+			% 			        729  & 40,5 & 9,35     & 81 & 7,85              \\ \hline
+			% 			        1000 & 45   & 7,94     & 90 & 1,94              \\ \hline
+			% 			        1331 & 49,5 & 9,63     & 99 & 0,19              \\ \hline
+			% 					\end{tabularx}
+			% 				\caption{Относительные ошибки предсказаний времени, SUMMA}
+			% 			\end{table}
+			% 		\end{column}
+		 % 		\end{columns}
+			% \end{frame}
+
+			\begin{frame}
+				\footnotesize
+				\frametitle{\insertsection}
+		 		\framesubtitle{\insertsubsection}
+				\begin{columns}[T]
+					\setlength{\mylen}{0.5\textwidth}
+					\begin{column}{\mylen}
+						\begin{figure}
+							\captionsetup{font=tiny, labelfont=tiny}
+							\centering
+							\includegraphics[width=.7\textwidth]{./images/dns_k1}
+							%\caption{Аппроксимирующая функция для слабой масштабируемости матричного умножения по алгоритму SUMMA}
+						\end{figure}
+					\end{column}
+					\begin{column}{\dimexpr\textwidth-\mylen}
+						\begin{figure}
+							\captionsetup{font=tiny, labelfont=tiny}
+							\centering
+							\includegraphics[width=.7\textwidth]{./images/dns_k2}
+							%\caption{Аппроксимирующая функция для слабой масштабируемости матричного умножения по алгоритму SUMMA}
+						\end{figure}
+					\end{column}
+				\end{columns}
+				\begin{figure}
+					\captionsetup{font=tiny, labelfont=tiny}
+					\centering
+					\caption{Аппроксимирующие функции предсказания времени выполнения матричного умножения по алгоритму DNS для двух различных значений констант}
+				\end{figure}
+				\begin{columns}[T]
+					\setlength{\mylen}{0.4\textwidth}
+					\begin{column}{\mylen}
+						\begin{itemize}[label = \(\bullet\)]
+					 		\item DNS — алгоритм матричного умножения.
+					 		\item Сложность алгоритма \(\mathcal{O}(N^3)\)
+					 		\item Всего 6 тестовых конфигураций
+					 	\end{itemize}
+					\end{column}
+					\begin{column}{\dimexpr\textwidth-\mylen}
+						\begin{table}
+				 			\captionsetup{font=tiny, labelfont=tiny}
+				 			\tiny
+								\begin{tabularx}{\textwidth}{|X|X|X||X|X|}
+								\hline
+						             & \multicolumn{2}{|c||}{\(C_1\)} & \multicolumn{2}{c|}{\(C_2\)} \\ \hline
+						        PN   & PS   & RE\_time & PS & RE\_time          \\ \hline
+						        343  & 31,5 & 6,55     & 63 & 5,66              \\ \hline
+						        512  & 36   & 8,42     & 72 & 6,84              \\ \hline
+						        729  & 40,5 & 9,35     & 81 & 7,85              \\ \hline
+						        1000 & 45   & 7,94     & 90 & 1,94              \\ \hline
+						        1331 & 49,5 & 9,63     & 99 & 0,19              \\ \hline
+								\end{tabularx}
+							\caption{Относительные ошибки предсказаний времени, SUMMA}
+						\end{table}
+					\end{column}
+				\end{columns}
+			\end{frame}
 		\subsection{Graph500}
+		\begin{frame}
+			\frametitle{\insertsection}
+			\framesubtitle{\insertsubsection}
+			\begin{itemize}[label = \(\bullet\)]
+				\item Graph500, включает в себя два графовых алгоритма: поиск в ширину (BFS) и поиск кратчайшего пути от одной вершины (SSSP).
+				\item Сложность алгоритма выражается через количество вершин и рёбер графа \(\mathcal{O}(V + E)\).
+				\item Выражая сложность через параметры запуска scalefactor и edgefactor сложность, получим: \(V + E = 2^{SC} + EF \cdot 2^{SC} = 2^{SC} \cdot (1 + EF) \)
+				\item Среднее значение относительных ошибок предсказания времени - 13,28\%, производительности - 13,22\%.
+				\item Тестовые конфигурации выбираются так, чтобы удовлетворять \(T_A(N)\:/\:p = const\), но не всегда возможно обеспечить строгое равенство \(\Rightarrow\) приходится округлять параметры запусков \(\Rightarrow\) провалы и всплески значений динамических характеристик \(\Rightarrow\) неточные предсказания.
+			\end{itemize}
+
+		\end{frame}
 	\section{Заключение}
 
 \end{document}
+
+
 
 % \begin{frame}
 % 	\frametitle{\insertsection}
 % 	\framesubtitle{\insertsubsection}
 
 % \end{frame}
+
 
 
