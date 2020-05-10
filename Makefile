@@ -2,15 +2,17 @@ all: view
 
 view: build
 	if which xdg-open > /dev/null; \
-	then xdg-open main.pdf; \
- 	else open main.pdf; \
-	fi 
+	then xdg-open main.pdf && xdg-open updated_presentation_main.pdf; \
+ 	else open main.pdf && open updated_presentation_main.pdf; \
+	fi
 
-build: main.pdf
+build: main.pdf updated_presentation_main.pdf
 
 main.pdf: ./main.tex ./input/* ./images/*
 	latexmk -pdf $<
-	
+
+updated_presentation_main.pdf: ./updated_presentation_main.tex
+	latexmk -pdf $<
 		
 clean:
 	rm -rf *.aux \
@@ -22,3 +24,6 @@ clean:
 	       *.toc \
 	       *.nav \
 	       *.snm
+
+rm_pdf:
+	rm -rf *.pdf
