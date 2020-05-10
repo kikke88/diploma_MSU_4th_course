@@ -2,16 +2,16 @@ all: view
 
 view: build
 	if which xdg-open > /dev/null; \
-	then xdg-open main.pdf && xdg-open updated_presentation_main.pdf; \
- 	else open main.pdf && open updated_presentation_main.pdf; \
+	then xdg-open main.pdf && xdg-open presentation_main.pdf; \
+ 	else open main.pdf && open presentation_main.pdf; \
 	fi
 
-build: main.pdf updated_presentation_main.pdf
+build: main.pdf presentation_main.pdf
 
 main.pdf: ./main.tex ./input/* ./images/*
 	latexmk -pdf $<
 
-updated_presentation_main.pdf: ./updated_presentation_main.tex
+presentation_main.pdf: ./presentation_main.tex
 	latexmk -pdf $<
 		
 clean:
